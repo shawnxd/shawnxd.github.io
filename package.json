@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && git add docs && git commit -m 'Deploy to docs' && git push"
+    "deploy": "npm run build && cp docs/index.html docs/404.html && git add docs && git commit -m 'Deploy to docs' && git push"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
