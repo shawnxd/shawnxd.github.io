@@ -4,7 +4,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <h1>Hello World!</h1>
-      <p>If you can see this, the basic setup is working.</p>
+      <p>I'm still working on this page.</p>
     </div>
   );
 };

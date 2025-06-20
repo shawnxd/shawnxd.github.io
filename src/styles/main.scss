@@ -32,4 +32,41 @@ nav {
       color: $masthead-link-color-hover;
     }
   }
+}
+
+// Mobile-friendly styles
+@media (max-width: 600px) {
+  body {
+    padding: 0 0.5rem;
+    font-size: 1em;
+  }
+  nav {
+    padding: 0.5rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    a {
+      margin: 0.5rem 0 0 0;
+      font-size: 1.1em;
+      padding: 0.5rem 0;
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+  h1, h2 {
+    font-size: 1.5em;
+    margin: 1rem 0 0.5rem 0;
+  }
+  ul {
+    padding-left: 0;
+  }
+  li {
+    font-size: 1em;
+    padding: 1rem 0.5rem;
+    margin-bottom: 1rem;
+  }
+  div[style*="maxWidth: 600px"] {
+    max-width: 100% !important;
+    padding: 1rem 0.25rem !important;
+  }
 } 

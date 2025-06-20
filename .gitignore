@@ -109,7 +109,6 @@ public/build/
 .vuepress/dist
 
 # Vite build output
-dist
 dist-ssr
 
 # FuseBox cache
