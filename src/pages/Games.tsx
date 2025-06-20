@@ -3,7 +3,7 @@ import React from 'react';
 const games = [
   {
     emoji: '🕹️',
-    title: '5 In A Row (Chinese Game) 五子棋',
+    title: '5 In A Row (Chinese Game)',
     tech: 'JS/HTML5',
     year: 2023,
     link: 'https://shawnxd.github.io/5-in-a-row/',
@@ -35,25 +35,27 @@ const games = [
   },
 ];
 
-export default function Games() {
+const Games: React.FC = () => {
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto', padding: '2rem 1rem' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Games</h2>
-      <ul style={{ listStyle: 'none', padding: 0 }}>
+    <div>
+      <h1>Games</h1>
+      <div className="games-list">
         {games.map((game) => (
-          <li key={game.title} style={{ marginBottom: '2rem', background: '#f9f9f9', borderRadius: 12, padding: '1.5rem 1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
-            <div style={{ fontSize: 32, marginBottom: 8 }}>{game.emoji}</div>
-            <div style={{ fontWeight: 600, fontSize: 20 }}>{game.title}</div>
-            <div style={{ color: '#666', margin: '0.5rem 0 1rem 0' }}>{game.tech} &middot; {game.year}</div>
-            <div>
+          <div key={game.title} className="game-item">
+            <div className="game-emoji">{game.emoji}</div>
+            <h3 className="game-title">{game.title}</h3>
+            <div className="game-meta">{game.tech} &middot; {game.year}</div>
+            <div className="game-links">
               {game.link && game.title !== 'Greedy Snake' && (
-                <a href={game.link} target="_blank" rel="noopener noreferrer" style={{ marginRight: 16, color: '#0070f3', textDecoration: 'none', fontWeight: 500 }}>Play</a>
+                <a href={game.link} target="_blank" rel="noopener noreferrer">Play</a>
               )}
-              {game.repo && <a href={game.repo} target="_blank" rel="noopener noreferrer" style={{ color: '#0070f3', textDecoration: 'none', fontWeight: 500 }}>Source</a>}
+              {game.repo && <a href={game.repo} target="_blank" rel="noopener noreferrer">Source</a>}
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
-} 
+}
+
+export default Games; 

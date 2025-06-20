@@ -1,39 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import fm from 'front-matter';
+import matter from 'gray-matter';
 
 interface Post {
   slug: string;
   title: string;
   date: string;
+  summary: string;
 }
 
-const postModules = import.meta.glob('../content/posts/*.md', { as: 'raw', eager: true });
-
-const posts: Post[] = Object.entries(postModules).map(([path, rawContent]) => {
-  const slug = path.split('/').pop()?.replace('.md', '');
-  const { attributes } = fm(rawContent as string);
-  return {
-    slug: slug!,
-    title: attributes.title,
-    date: attributes.date,
-  };
-}).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
 const Blog: React.FC = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const postModules = import.meta.glob('/src/content/posts/*.md', { query: '?raw', import: 'default' }) as Record<string, () => Promise<string>>;
+      const postPromises = Object.entries(postModules).map(async ([path, resolver]) => {
+        const content = await resolver();
+        const { data } = matter(content);
+        const slug = path.split('/').pop()?.replace('.md', '');
+        return {
+          slug: slug || '',
+          title: data.title || 'Untitled',
+          date: data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '',
+          summary: data.summary || content.substring(0, 150) + '...',
+        };
+      });
+
+      const allPosts = await Promise.all(postPromises);
+      allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setPosts(allPosts);
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <div>
       <h1>Blog</h1>
-      <ul>
-        {posts.map(post => (
-          <li key={post.slug}>
-            <Link to={`/blog/${post.slug}`}>
-              <h2>{post.title}</h2>
-              <p>{new Date(post.date).toLocaleDateString()}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {posts.map(post => (
+        <div key={post.slug}>
+          <h2><Link to={`/blog/${post.slug}`}>{post.title}</Link></h2>
+          <p><em>{post.date}</em></p>
+          <hr />
+        </div>
+      ))}
     </div>
   );
 };
