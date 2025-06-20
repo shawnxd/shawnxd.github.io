@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="900" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .component { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; rx: 8; }
+      .user { fill: #e8f5e8; stroke: #388e3c; stroke-width: 2; rx: 8; }
+      .queue { fill: #fff3e0; stroke: #f57c00; stroke-width: 2; rx: 8; }
+      .db { fill: #f3e5f5; stroke: #7b1fa2; stroke-width: 2; rx: 8; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; }
+      .title { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+      .arrow { stroke: #333; stroke-width: 2; marker-end: url(#arrowhead); }
+      .step { font-family: Arial, sans-serif; font-size: 10px; fill: #666; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="500" fill="white"/>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" class="title">Message Flow in Real-time Chat System</text>
+  
+  <!-- Users -->
+  <rect x="50" y="80" width="100" height="60" class="user"/>
+  <text x="100" y="110" text-anchor="middle" class="title">User A</text>
+  <text x="100" y="125" text-anchor="middle" class="text">(Sender)</text>
+  
+  <rect x="750" y="80" width="100" height="60" class="user"/>
+  <text x="800" y="110" text-anchor="middle" class="title">User B</text>
+  <text x="800" y="125" text-anchor="middle" class="text">(Recipient)</text>
+  
+  <!-- Components -->
+  <rect x="200" y="60" width="120" height="40" class="component"/>
+  <text x="260" y="80" text-anchor="middle" class="text">API Gateway</text>
+  
+  <rect x="200" y="120" width="120" height="40" class="component"/>
+  <text x="260" y="140" text-anchor="middle" class="text">Chat Service</text>
+  
+  <rect x="350" y="60" width="120" height="40" class="queue"/>
+  <text x="410" y="80" text-anchor="middle" class="text">Message Queue</text>
+  <text x="410" y="95" text-anchor="middle" class="text">(Kafka/RabbitMQ)</text>
+  
+  <rect x="350" y="120" width="120" height="40" class="db"/>
+  <text x="410" y="140" text-anchor="middle" class="text">Message DB</text>
+  
+  <rect x="500" y="60" width="120" height="40" class="component"/>
+  <text x="560" y="80" text-anchor="middle" class="text">Presence Service</text>
+  
+  <rect x="500" y="120" width="120" height="40" class="component"/>
+  <text x="560" y="140" text-anchor="middle" class="text">WebSocket Server</text>
+  
+  <rect x="650" y="90" width="80" height="40" class="queue"/>
+  <text x="690" y="110" text-anchor="middle" class="text">Offline</text>
+  <text x="690" y="125" text-anchor="middle" class="text">Queue</text>
+  
+  <!-- Message Flow Steps -->
+  <!-- Step 1: Send Message -->
+  <line x1="150" y1="110" x2="200" y2="80" class="arrow"/>
+  <text x="175" y="70" class="step">1. Send Message</text>
+  
+  <!-- Step 2: Route to Chat Service -->
+  <line x1="260" y1="100" x2="260" y2="120" class="arrow"/>
+  <text x="280" y="110" class="step">2. Route</text>
+  
+  <!-- Step 3: Store in Queue -->
+  <line x1="320" y1="140" x2="350" y2="80" class="arrow"/>
+  <text x="335" y="105" class="step">3. Queue</text>
+  
+  <!-- Step 4: Store in DB -->
+  <line x1="320" y1="140" x2="350" y2="120" class="arrow"/>
+  <text x="335" y="135" class="step">4. Persist</text>
+  
+  <!-- Step 5: Check Presence -->
+  <line x1="470" y1="80" x2="500" y2="80" class="arrow"/>
+  <text x="485" y="70" class="step">5. Check Online</text>
+  
+  <!-- Step 6a: Online - Send via WebSocket -->
+  <line x1="560" y1="100" x2="750" y2="110" class="arrow"/>
+  <text x="655" y="95" class="step">6a. Real-time</text>
+  
+  <!-- Step 6b: Offline - Store in Queue -->
+  <line x1="560" y1="100" x2="650" y2="110" class="arrow"/>
+  <text x="605" y="95" class="step">6b. Offline</text>
+  
+  <!-- Step 7: Acknowledgment -->
+  <line x1="750" y1="140" x2="150" y2="140" class="arrow"/>
+  <text x="450" y="155" class="step">7. Delivery ACK</text>
+  
+  <!-- Status Indicators -->
+  <circle cx="100" cy="180" r="15" fill="#4caf50"/>
+  <text x="100" y="185" text-anchor="middle" class="text" fill="white">✓</text>
+  <text x="100" y="205" text-anchor="middle" class="text">Sent</text>
+  
+  <circle cx="800" cy="180" r="15" fill="#ff9800"/>
+  <text x="800" y="185" text-anchor="middle" class="text" fill="white">✓✓</text>
+  <text x="800" y="205" text-anchor="middle" class="text">Delivered</text>
+  
+  <circle cx="450" cy="180" r="15" fill="#2196f3"/>
+  <text x="450" y="185" text-anchor="middle" class="text" fill="white">✓✓</text>
+  <text x="450" y="205" text-anchor="middle" class="text">Read</text>
+  
+  <!-- Additional Components -->
+  <rect x="200" y="220" width="120" height="40" class="component"/>
+  <text x="260" y="240" text-anchor="middle" class="text">Notification</text>
+  <text x="260" y="255" text-anchor="middle" class="text">Service</text>
+  
+  <rect x="350" y="220" width="120" height="40" class="component"/>
+  <text x="410" y="240" text-anchor="middle" class="text">Push Service</text>
+  
+  <rect x="500" y="220" width="120" height="40" class="db"/>
+  <text x="560" y="240" text-anchor="middle" class="text">Redis Cache</text>
+  
+  <!-- Push Notification Flow -->
+  <line x1="320" y1="240" x2="350" y2="240" class="arrow"/>
+  <text x="335" y="230" class="step">Push</text>
+  
+  <line x1="470" y1="240" x2="500" y2="240" class="arrow"/>
+  <text x="485" y="230" class="step">Cache</text>
+  
+  <!-- Legend -->
+  <rect x="50" y="300" width="800" height="180" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+  <text x="450" y="320" text-anchor="middle" class="title">Message Status Flow</text>
+  
+  <text x="80" y="350" class="text">• <strong>Single Tick (✓)</strong>: Message sent to server</text>
+  <text x="80" y="370" class="text">• <strong>Double Tick (✓✓)</strong>: Message delivered to recipient's device</text>
+  <text x="80" y="390" class="text">• <strong>Blue Tick (✓✓)</strong>: Message read by recipient</text>
+  <text x="80" y="410" class="text">• <strong>Offline Queue</strong>: Messages stored for offline users</text>
+  <text x="80" y="430" class="text">• <strong>Push Notifications</strong>: Alert offline users about new messages</text>
+  <text x="80" y="450" class="text">• <strong>WebSocket</strong>: Real-time bidirectional communication</text>
+</svg> 
