@@ -1,5 +1,6 @@
 {
-  "name": "personal-website",
+  "name": "personal-website-clean",
+  "homepage": "https://shawn.github.io/personal-website-clean",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
