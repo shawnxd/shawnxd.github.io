@@ -11,7 +11,11 @@ const BlogPost: React.FC = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const postModules = import.meta.glob('../content/posts/*.md', { query: '?raw', import: 'default' }) as Record<string, () => Promise<string>>;
+        const postModules = import.meta.glob('../content/posts/*.md', { 
+          query: '?raw',
+          import: 'default'
+        }) as Record<string, () => Promise<string>>;
+        
         const postPath = `../content/posts/${slug}.md`;
         const postResolver = postModules[postPath];
 
@@ -20,7 +24,8 @@ const BlogPost: React.FC = () => {
           const { data, content: markdownContent } = matter(content);
           setPost({ title: data.title || 'Untitled', content: markdownContent });
         } else {
-          throw new Error("Post not found");
+          console.error('Post not found:', slug);
+          setPost(null);
         }
       } catch (error) {
         console.error("Error fetching post:", error);

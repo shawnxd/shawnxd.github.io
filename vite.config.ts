@@ -5,5 +5,14 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'docs'
+  },
+  assetsInclude: ['**/*.md'],
+  optimizeDeps: {
+    include: ['gray-matter']
+  },
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
   }
 })
