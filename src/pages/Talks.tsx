@@ -2,34 +2,36 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import fm from 'front-matter';
 
-interface Post {
+interface Talk {
   slug: string;
   title: string;
+  venue: string;
   date: string;
 }
 
-const postModules = import.meta.glob('../content/posts/*.md', { as: 'raw', eager: true });
+const talkModules = import.meta.glob('../content/talks/*.md', { as: 'raw', eager: true });
 
-const posts: Post[] = Object.entries(postModules).map(([path, rawContent]) => {
+const talks: Talk[] = Object.entries(talkModules).map(([path, rawContent]) => {
   const slug = path.split('/').pop()?.replace('.md', '');
   const { attributes } = fm(rawContent as string);
   return {
     slug: slug!,
     title: attributes.title,
+    venue: attributes.venue,
     date: attributes.date,
   };
 }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const Blog: React.FC = () => {
+const Talks: React.FC = () => {
   return (
     <div>
-      <h1>Blog</h1>
+      <h1>Talks</h1>
       <ul>
-        {posts.map(post => (
-          <li key={post.slug}>
-            <Link to={`/blog/${post.slug}`}>
-              <h2>{post.title}</h2>
-              <p>{new Date(post.date).toLocaleDateString()}</p>
+        {talks.map(talk => (
+          <li key={talk.slug}>
+            <Link to={`/talks/${talk.slug}`}>
+              <h2>{talk.title}</h2>
+              <p>{talk.venue} - {new Date(talk.date).toLocaleDateString()}</p>
             </Link>
           </li>
         ))}
@@ -38,4 +40,4 @@ const Blog: React.FC = () => {
   );
 };
 
-export default Blog;
+export default Talks; 

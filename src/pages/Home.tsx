@@ -1,9 +1,12 @@
-export default function Home() {
+import React from 'react';
+
+const Home: React.FC = () => {
   return (
     <div>
-      <h1>Shawn Dong (Xiangchen Dong)</h1>
-      <p>Software Engineer based in Bay Area.</p>
-      <p>I enjoy building scalable systems, mentoring students, and making games in my spare time.</p>
+      <h1>Hello World!</h1>
+      <p>If you can see this, the basic setup is working.</p>
     </div>
-  )
-}
+  );
+};
+
+export default Home;

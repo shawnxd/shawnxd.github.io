@@ -1,0 +1,35 @@
+@import "variables";
+
+body {
+  font-family: $global-font-family;
+  color: $text-color;
+  background-color: $background-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $link-color-hover;
+  }
+}
+
+nav {
+  padding: 1rem;
+  background-color: $lighter-gray;
+  border-bottom: 1px solid $border-color;
+
+  a {
+    margin-right: 1rem;
+    color: $masthead-link-color;
+
+    &:hover {
+      color: $masthead-link-color-hover;
+    }
+  }
+} 
