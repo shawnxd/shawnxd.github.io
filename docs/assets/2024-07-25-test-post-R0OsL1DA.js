@@ -1,4 +1,4 @@
----
+const e=`---
 title: "Designing a Real-time Chat App (WhatsApp, Slack)"
 date: "2024-07-25"
 summary: "How would you build a real-time messaging system that's scalable, consistent, and fast? A comprehensive guide to designing chat applications like WhatsApp and Slack."
@@ -125,7 +125,7 @@ A well-designed database schema is crucial for performance and scalability.
 ### Core Tables
 
 **Users Table**
-```sql
+\`\`\`sql
 CREATE TABLE users (
     id UUID PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -135,10 +135,10 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW()
 );
-```
+\`\`\`
 
 **Conversations Table**
-```sql
+\`\`\`sql
 CREATE TABLE conversations (
     id UUID PRIMARY KEY,
     type VARCHAR(20) CHECK (type IN ('single', 'group')),
@@ -146,10 +146,10 @@ CREATE TABLE conversations (
     created_by UUID REFERENCES users(id),
     created_at TIMESTAMP DEFAULT NOW()
 );
-```
+\`\`\`
 
 **Messages Table**
-```sql
+\`\`\`sql
 CREATE TABLE messages (
     id UUID PRIMARY KEY,
     conversation_id UUID REFERENCES conversations(id),
@@ -159,10 +159,10 @@ CREATE TABLE messages (
     status VARCHAR(20) DEFAULT 'sent',
     sent_at TIMESTAMP DEFAULT NOW()
 );
-```
+\`\`\`
 
 **Message Status Table**
-```sql
+\`\`\`sql
 CREATE TABLE message_status (
     message_id UUID REFERENCES messages(id),
     recipient_id UUID REFERENCES users(id),
@@ -170,12 +170,12 @@ CREATE TABLE message_status (
     updated_at TIMESTAMP,
     PRIMARY KEY (message_id, recipient_id)
 );
-```
+\`\`\`
 
 ### Key Design Decisions
 
 * **UUID Primary Keys**: Enable distributed ID generation and avoid conflicts
-* **Composite Primary Keys**: For junction tables like `message_status`
+* **Composite Primary Keys**: For junction tables like \`message_status\`
 * **Foreign Key Constraints**: Ensure data integrity
 * **Indexing Strategy**: Index on frequently queried columns (conversation_id, sender_id, sent_at)
 * **Partitioning**: Partition messages table by conversation_id for better performance
@@ -243,7 +243,7 @@ WebSockets are the backbone of real-time communication:
 ## 9. Key APIs
 
 ### Message APIs
-```javascript
+\`\`\`javascript
 // Send a message
 POST /api/v1/messages
 {
@@ -260,10 +260,10 @@ POST /api/v1/messages/read
 {
   "message_ids": ["uuid1", "uuid2", "uuid3"]
 }
-```
+\`\`\`
 
 ### Presence APIs
-```javascript
+\`\`\`javascript
 // Update presence status
 POST /api/v1/presence
 {
@@ -273,10 +273,10 @@ POST /api/v1/presence
 
 // Get user presence
 GET /api/v1/users/{id}/presence
-```
+\`\`\`
 
 ### Group Management APIs
-```javascript
+\`\`\`javascript
 // Create a group
 POST /api/v1/groups
 {
@@ -289,7 +289,7 @@ POST /api/v1/groups/{id}/members
 {
   "user_id": "uuid"
 }
-```
+\`\`\`
 
 ## 10. Performance Optimization
 
@@ -375,4 +375,4 @@ Remember that real-time messaging is not just about sending messages — it's ab
 5. **Security First**: Build security into every layer of the system
 6. **Monitoring**: Comprehensive observability for production systems
 
-The design patterns and architectural decisions discussed in this guide provide a solid foundation for building scalable, reliable, and performant real-time chat applications. 
+The design patterns and architectural decisions discussed in this guide provide a solid foundation for building scalable, reliable, and performant real-time chat applications. `;export{e as default};
