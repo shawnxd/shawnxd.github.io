@@ -65,18 +65,32 @@ a {
 
 // Mobile-friendly styles
 @media (max-width: 768px) {
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
   .container {
     flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
   }
 
   #main {
     border-right: none;
+    padding: 1rem;
+    flex: 1;
+    min-height: 0;
   }
 
   #sidebar {
     width: 100%;
     border-top: 1px solid $border-color;
     border-right: none;
+    padding: 1rem;
+    box-sizing: border-box;
   }
 
   #header {
@@ -85,6 +99,8 @@ a {
     align-items: center;
     justify-content: space-between;
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 
     .site-title {
       margin-bottom: 0;
@@ -147,6 +163,7 @@ a {
         border-top: 1px solid $border-color;
         box-shadow: 0 4px 6px rgba($black, 0.1);
         padding: 1rem;
+        box-sizing: border-box;
         
         a {
           margin: 0;
@@ -215,5 +232,32 @@ a {
     svg {
       font-size: $type-size-4;
     }
+  }
+}
+
+// Mobile-specific adjustments for content
+@media (max-width: 768px) {
+  .games-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .game-item {
+    padding: 1rem;
+  }
+
+  .contact-links {
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  p, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 } 
