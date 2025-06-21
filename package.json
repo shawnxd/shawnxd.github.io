@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp docs/index.html docs/404.html",
     "preview": "vite preview",
-    "deploy": "npm run build && cp docs/index.html docs/404.html && git add docs && git commit -m 'Deploy to docs' && git push"
+    "deploy": "npm run build && git add docs && git commit -m 'Deploy to docs' && git push"
   },
   "dependencies": {
     "buffer": "^6.0.3",
