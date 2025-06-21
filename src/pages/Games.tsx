@@ -10,14 +10,6 @@ const games = [
     repo: 'https://github.com/shawnxd/connect-4',
   },
   {
-    emoji: '🐍',
-    title: 'Greedy Snake',
-    tech: 'JavaScript/Canvas',
-    year: 2024,
-    link: 'https://shawnxd.github.io/greedy_snake/',
-    repo: 'https://github.com/shawnxd/greedy_snake',
-  },
-  {
     emoji: '🕹️',
     title: '5 In A Row (Chinese Game)',
     tech: 'JS/HTML5',
@@ -41,6 +33,14 @@ const games = [
     link: 'https://shawnxd.github.io/alien-invasion/',
     repo: 'https://github.com/shawnxd/alien-invasion',
   },
+  {
+    emoji: '🐍',
+    title: 'Greedy Snake',
+    tech: 'JavaScript/Canvas',
+    year: 2020,
+    link: 'https://shawnxd.github.io/greedy_snake/',
+    repo: 'https://github.com/shawnxd/greedy_snake',
+  },
 ];
 
 const Games: React.FC = () => {
@@ -54,7 +54,7 @@ const Games: React.FC = () => {
             <h3 className="game-title">{game.title}</h3>
             <div className="game-meta">{game.tech} &middot; {game.year}</div>
             <div className="game-links">
-              {game.link && game.title !== 'Greedy Snake' && (
+              {game.link && (
                 <a href={game.link} target="_blank" rel="noopener noreferrer">Play</a>
               )}
               {game.repo && <a href={game.repo} target="_blank" rel="noopener noreferrer">Source</a>}

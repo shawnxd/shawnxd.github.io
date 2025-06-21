@@ -39,7 +39,7 @@ function App() {
       </header>
       <div className="container">
         <aside id="sidebar">
-          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+          <div className="profile-photo" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
             <img 
               src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=vJbvaGcAAAAJ&citpid=5" 
               alt="Shawn X. Dong" 
@@ -53,8 +53,8 @@ function App() {
               }}
             />
           </div>
-          <h2>About Me</h2>
-          <div style={{ fontSize: '1rem', lineHeight: '1.6' }}>
+          <h2 className="self-intro">About Me</h2>
+          <div className="self-intro" style={{ fontSize: '1rem', lineHeight: '1.6' }}>
             <strong>Shawn X. Dong</strong><br/>
             Sunnyvale, California, United States<br/>
             <br/>

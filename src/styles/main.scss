@@ -93,6 +93,11 @@ a {
     box-sizing: border-box;
   }
 
+  #sidebar .profile-photo,
+  #sidebar .self-intro {
+    display: none;
+  }
+
   #header {
     padding: 1rem;
     flex-direction: row;
