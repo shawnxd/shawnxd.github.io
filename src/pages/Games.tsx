@@ -10,6 +10,14 @@ const games = [
     repo: 'https://github.com/shawnxd/connect-4',
   },
   {
+    emoji: '🐍',
+    title: 'Greedy Snake',
+    tech: 'JavaScript/Canvas',
+    year: 2024,
+    link: 'https://shawnxd.github.io/greedy_snake/',
+    repo: 'https://github.com/shawnxd/greedy_snake',
+  },
+  {
     emoji: '🕹️',
     title: '5 In A Row (Chinese Game)',
     tech: 'JS/HTML5',
@@ -32,14 +40,6 @@ const games = [
     year: 2022,
     link: 'https://shawnxd.github.io/alien-invasion/',
     repo: 'https://github.com/shawnxd/alien-invasion',
-  },
-  {
-    emoji: '🐍',
-    title: 'Greedy Snake',
-    tech: 'Python',
-    year: 2020,
-    link: '',
-    repo: 'https://github.com/shawnxd/greedy_snake',
   },
 ];
 
