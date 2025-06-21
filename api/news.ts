@@ -9,6 +9,7 @@ export default async function handler(
 ) {
   // Use the same environment variable name for consistency.
   const apiKey = process.env.VITE_NEWS_API_KEY;
+  const pageSize = process.env.NEWS_PAGE_SIZE || '10'; // Configurable page size, default to 10
 
   if (req.method !== 'GET') {
     res.setHeader('Allow', ['GET']);
@@ -20,7 +21,10 @@ export default async function handler(
     return res.status(500).json({ error: 'API key is not configured.' });
   }
 
-  const newsApiUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=6`;
+  // Get query parameters from the request
+  const { category = 'general', country = 'us', language = 'en' } = req.query;
+
+  const newsApiUrl = `https://newsapi.org/v2/top-headlines?country=${country}&language=${language}&apiKey=${apiKey}&pageSize=${pageSize}&sortBy=publishedAt&category=${category}`;
 
   try {
     const newsResponse = await fetch(newsApiUrl);

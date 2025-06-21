@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaNewspaper, FaExternalLinkAlt, FaClock } from 'react-icons/fa';
+import { fetchNewsLocal } from '../api/news-dev';
 
 interface NewsArticle {
   title: string;
@@ -24,6 +25,17 @@ const News: React.FC = () => {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [category, setCategory] = useState('general');
+
+  const categories = [
+    { value: 'general', label: 'General' },
+    { value: 'business', label: 'Business' },
+    { value: 'technology', label: 'Technology' },
+    { value: 'sports', label: 'Sports' },
+    { value: 'entertainment', label: 'Entertainment' },
+    { value: 'health', label: 'Health' },
+    { value: 'science', label: 'Science' }
+  ];
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -31,15 +43,23 @@ const News: React.FC = () => {
         setLoading(true);
         setError(null);
         
-        // Fetch from our own API proxy. It's simpler and more secure.
-        const response = await fetch('/api/news');
-
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => null);
-          throw new Error(errorData?.error || `Failed to fetch news. Status: ${response.status}`);
+        let data: NewsResponse;
+        
+        // Use local API for development, Vercel API for production
+        if (import.meta.env.DEV) {
+          // Local development - use direct API call
+          data = await fetchNewsLocal(category);
+        } else {
+          // Production - use Vercel serverless function
+          const response = await fetch(`/api/news?category=${category}`);
+          
+          if (!response.ok) {
+            const errorData = await response.json().catch(() => null);
+            throw new Error(errorData?.error || `Failed to fetch news. Status: ${response.status}`);
+          }
+          
+          data = await response.json();
         }
-
-        const data: NewsResponse = await response.json();
         
         // Handle errors returned in the JSON body from the proxy
         if (data.status === 'error' || data.error) {
@@ -57,7 +77,7 @@ const News: React.FC = () => {
     };
 
     fetchNews();
-  }, []);
+  }, [category]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -98,7 +118,24 @@ const News: React.FC = () => {
 
   return (
     <div className="news-section">
-      <h2><FaNewspaper /> Latest News</h2>
+      <div className="news-header">
+        <h2><FaNewspaper /> Latest News</h2>
+        <div className="category-selector">
+          <label htmlFor="category-select">Category: </label>
+          <select 
+            id="category-select"
+            value={category} 
+            onChange={(e) => setCategory(e.target.value)}
+            disabled={loading}
+          >
+            {categories.map(cat => (
+              <option key={cat.value} value={cat.value}>
+                {cat.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
       <div className="news-grid">
         {articles.map((article, index) => (
           <article key={index} className="news-card">
