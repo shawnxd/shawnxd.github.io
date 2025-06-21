@@ -7,6 +7,7 @@ import Contact from "./pages/Contact"
 import Games from "./pages/Games"
 import Blog from "./pages/Blog"
 import BlogPost from "./pages/BlogPost"
+import VisitorCounter from "./components/VisitorCounter"
 import './styles/main.scss'
 
 function App() {
@@ -58,10 +59,12 @@ function App() {
             <strong>Shawn X. Dong</strong><br/>
             Sunnyvale, California, United States<br/>
             <br/>
+            Shawn is a seasoned software engineer specializing in large-scale software systems, with experience at Uber and a strong academic background from the University of Pennsylvania. His expertise spans backend, frontend, and data platforms, and he is passionate about building impactful products and mentoring others.
+          </div>
+          <VisitorCounter />
+          <div style={{ textAlign: 'center', marginTop: '1.5rem', display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
             <span>
-              Shawn is a seasoned software engineer specializing in large-scale software systems, with experience at Uber and a strong academic background from the University of Pennsylvania. His expertise spans backend, frontend, and data platforms, and he is passionate about building impactful products and mentoring others.<br/><br/>
-              <br/>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.5rem' }}>
                 <a 
                   href="https://www.linkedin.com/in/shawn-x-dong/" 
                   target="_blank" 
