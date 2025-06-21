@@ -14,9 +14,10 @@ interface NewsArticle {
 
 interface NewsResponse {
   articles: NewsArticle[];
-  status: string;
-  totalResults: number;
+  status?: string; // This might not be present on error
+  totalResults?: number;
   message?: string;
+  error?: string; // For errors from our proxy
 }
 
 const News: React.FC = () => {
@@ -30,25 +31,20 @@ const News: React.FC = () => {
         setLoading(true);
         setError(null);
         
-        // Using environment variable for API key
-        const apiKey = import.meta.env.VITE_NEWS_API_KEY;
-        
-        if (!apiKey) {
-          throw new Error('News API key not configured. Please set VITE_NEWS_API_KEY in your .env file.');
-        }
-        
-        const response = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}&pageSize=6`
-        );
+        // Fetch from our own API proxy. It's simpler and more secure.
+        const response = await fetch('/api/news');
 
         if (!response.ok) {
-          throw new Error('Failed to fetch news');
+          const errorData = await response.json().catch(() => null);
+          throw new Error(errorData?.error || `Failed to fetch news. Status: ${response.status}`);
         }
 
         const data: NewsResponse = await response.json();
         
-        if (data.status === 'error') {
-          throw new Error(data.message || 'API error');
+        // Handle errors returned in the JSON body from the proxy
+        if (data.status === 'error' || data.error) {
+          const errorMessage = data.message || data.error || 'An unknown API error occurred';
+          throw new Error(errorMessage);
         }
 
         setArticles(data.articles);
