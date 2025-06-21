@@ -42,6 +42,8 @@ The architecture consists of four distinct layers, each with specific responsibi
 
 ![Chat System Architecture](/images/chat-app/architecture-diagram.svg)
 
+> This diagram illustrates the four key layers of our chat system. The **Client Layer** is what users interact with. The **API Gateway Layer** acts as a secure front door. The **Service Layer** contains the core logic for features like chat and presence. Finally, the **Data & Infrastructure Layer** handles all storage and real-time communication.
+
 ### Client Layer
 Contains the user-facing applications across multiple platforms:
 * **Mobile Apps**: iOS and Android native applications
@@ -87,6 +89,8 @@ Understanding how messages flow through the system is crucial for designing a re
 
 ![Message Flow Diagram](/images/chat-app/message-flow-diagram.svg)
 
+> This diagram shows the journey of a message from sender to recipient. It highlights how the API Gateway, Chat Service, and various queues work together to process, persist, and deliver messages in real-time. It also visualizes how the system determines if a user is online or offline to ensure reliable delivery.
+
 ### Message Delivery Flow: One-to-One Messaging
 
 For one-to-one messaging, the flow is straightforward but involves multiple steps:
@@ -121,6 +125,8 @@ This status tracking is essential for user experience and helps users understand
 A well-designed database schema is crucial for performance and scalability.
 
 ![Database Schema](/images/chat-app/database-schema.svg)
+
+> This schema visualizes how we organize our data. The core tables—`users`, `conversations`, and `messages`—are connected through relationships. For instance, a conversation can have many messages, and a user can participate in many conversations. This structure is designed for efficiency and scalability.
 
 ### Core Tables
 
@@ -185,6 +191,8 @@ CREATE TABLE message_status (
 Building a chat system that can handle millions of users requires careful planning around scaling.
 
 ![Scaling Strategy](/images/chat-app/scaling-strategy.svg)
+
+> This diagram explains how the system is designed to handle millions of users. It shows how we use a load balancer to distribute traffic, scale the application layer horizontally by adding more servers, and shard or replicate our databases and caches for high availability and performance.
 
 ### Horizontal Scaling
 
@@ -251,43 +259,32 @@ POST /api/v1/messages
   "content": "Hello, world!",
   "message_type": "text"
 }
+```
 
-// Get message history
-GET /api/v1/conversations/{id}/messages?limit=50&offset=0
-
-// Mark messages as read
-POST /api/v1/messages/read
+### Conversation APIs
+```javascript
+// Create a new conversation
+POST /api/v1/conversations
 {
-  "message_ids": ["uuid1", "uuid2", "uuid3"]
+  "type": "group",
+  "name": "Project Team",
+  "participants": ["user_id_1", "user_id_2"]
 }
 ```
 
 ### Presence APIs
 ```javascript
-// Update presence status
-POST /api/v1/presence
-{
-  "status": "online",
-  "device_id": "uuid"
-}
-
 // Get user presence
-GET /api/v1/users/{id}/presence
+GET /api/v1/presence?user_ids=user_id_1,user_id_2
 ```
 
-### Group Management APIs
+### Media APIs
 ```javascript
-// Create a group
-POST /api/v1/groups
+// Upload a file
+POST /api/v1/media/upload
 {
-  "name": "Project Team",
-  "members": ["user1", "user2", "user3"]
-}
-
-// Add member to group
-POST /api/v1/groups/{id}/members
-{
-  "user_id": "uuid"
+  "file": "...",
+  "conversation_id": "uuid"
 }
 ```
 
@@ -360,19 +357,15 @@ Common questions you might encounter in system design interviews:
 
 ## Conclusion
 
-Building a real-time chat application requires careful consideration of scalability, consistency, and performance. The key is to design a system that can handle the massive scale of modern messaging applications while maintaining the real-time experience users expect.
+Designing a real-time chat application is a complex undertaking that requires a deep understanding of distributed systems, real-time communication, and data management. By breaking down the problem into distinct layers and focusing on scalability, reliability, and security, you can build a robust system capable of handling millions of users.
 
-The architecture should be modular, allowing for independent scaling of different components. Message queues, caching, and proper data modeling are crucial for performance. Security and privacy should be built into the system from the ground up.
+Key takeaways:
 
-Remember that real-time messaging is not just about sending messages — it's about creating a seamless, reliable, and fast communication experience that works across devices and network conditions. The success of applications like WhatsApp and Slack demonstrates that users value reliability, speed, and a great user experience above all else.
+* **Microservices**: A modular approach for maintainability and scalability
+* **Asynchronous Processing**: Message queues for decoupling and resilience
+* **Real-time Communication**: WebSockets for low-latency updates
+* **Data Partitioning**: Sharding and replication for database performance
+* **Caching**: Redis for fast access to frequently used data
+* **Security First**: End-to-end encryption and robust authentication
 
-### Key Takeaways
-
-1. **Layered Architecture**: Separate concerns across client, gateway, service, and data layers
-2. **Horizontal Scaling**: Design for scale from the beginning
-3. **Real-time Communication**: WebSockets and message queues for instant delivery
-4. **Data Consistency**: Eventual consistency with proper conflict resolution
-5. **Security First**: Build security into every layer of the system
-6. **Monitoring**: Comprehensive observability for production systems
-
-The design patterns and architectural decisions discussed in this guide provide a solid foundation for building scalable, reliable, and performant real-time chat applications. 
+Whether you're building the next Slack or just exploring system design, these principles provide a solid foundation for creating a world-class chat application. 
