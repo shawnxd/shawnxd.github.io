@@ -4,12 +4,15 @@ import { ref, onValue, runTransaction } from 'firebase/database';
 
 const VisitorCounter: React.FC = () => {
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log("VisitorCounter: useEffect triggered.");
     const counterRef = ref(database, 'visitors/count');
 
     // Function to increment the counter
     const incrementCounter = () => {
+      console.log("VisitorCounter: Attempting to increment count.");
       runTransaction(counterRef, (currentValue) => {
         return (currentValue || 0) + 1;
       });
@@ -22,15 +25,27 @@ const VisitorCounter: React.FC = () => {
       sessionStorage.setItem('hasVisited', 'true');
     }
 
-    // Listen for changes to the counter and update the state
+    console.log("VisitorCounter: Setting up listener for database changes.");
     onValue(counterRef, (snapshot) => {
       const count = snapshot.val();
+      console.log("VisitorCounter: Data received from Firebase:", count);
       if (count !== null) {
         setVisitorCount(count);
       }
+    }, (error) => {
+      console.error("Firebase Read Error:", error);
+      setError("Error loading count.");
     });
 
   }, []);
+
+  if (error) {
+    return (
+      <div className="visitor-counter" style={{ marginTop: '2rem', textAlign: 'center' }}>
+        <p style={{ fontSize: '1.1rem', color: 'red' }}>{error}</p>
+      </div>
+    )
+  }
 
   return (
     <div className="visitor-counter" style={{ marginTop: '2rem', textAlign: 'center' }}>
