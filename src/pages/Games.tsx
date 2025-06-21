@@ -2,6 +2,14 @@ import React from 'react';
 
 const games = [
   {
+    emoji: '🔴🔵',
+    title: 'Connect Four',
+    tech: 'TypeScript/Canvas',
+    year: 2024,
+    link: 'https://shawnxd.github.io/connect-4/',
+    repo: 'https://github.com/shawnxd/connect-4',
+  },
+  {
     emoji: '🕹️',
     title: '5 In A Row (Chinese Game)',
     tech: 'JS/HTML5',
