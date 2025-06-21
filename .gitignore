@@ -84,14 +84,14 @@ out
 
 # Nuxt.js build output
 .nuxt
-dist
+# dist # This is ignored because Vercel handles it.
 
 # Docusaurus build output
 .docusaurus
 
 # Gatsby build output
 .cache/
-public
+# public # This directory contains static assets and must not be ignored.
 
 # SvelteKit build output
 .svelte-kit
