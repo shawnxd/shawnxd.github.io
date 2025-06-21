@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import matter from 'gray-matter';
+import News from '../components/News';
 
 interface Post {
   slug: string;
@@ -40,14 +41,30 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      {posts.map(post => (
-        <div key={post.slug}>
-          <h2><Link to={`/blog/${post.slug}`}>{post.title}</Link></h2>
-          <p>{post.summary}</p>
-          <p><em>{post.date}</em></p>
-          <hr />
-        </div>
-      ))}
+      <div className="home-content">
+        <section className="news-section-home">
+          <div className="news-intro">
+            <h2>Latest News</h2>
+            <p>
+              Stay updated with the latest headlines from around the United States. 
+              This section automatically fetches current news from trusted sources using the free NewsAPI.org service.
+            </p>
+          </div>
+          <News />
+        </section>
+        
+        <section className="blog-posts">
+          <h2>Latest Blog Posts</h2>
+          {posts.map(post => (
+            <div key={post.slug} className="blog-post-preview">
+              <h3><Link to={`/blog/${post.slug}`}>{post.title}</Link></h3>
+              <p>{post.summary}</p>
+              <p><em>{post.date}</em></p>
+              <hr />
+            </div>
+          ))}
+        </section>
+      </div>
     </div>
   );
 };

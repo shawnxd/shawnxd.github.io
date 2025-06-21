@@ -7,6 +7,7 @@ import Contact from "./pages/Contact"
 import Games from "./pages/Games"
 import Blog from "./pages/Blog"
 import BlogPost from "./pages/BlogPost"
+import News from "./pages/News"
 import VisitorCounter from "./components/VisitorCounter"
 import './styles/main.scss'
 
@@ -34,6 +35,7 @@ function App() {
         </button>
         <nav className={isMenuOpen ? 'is-open' : ''}>
           <Link to="/blog" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+          <Link to="/news" onClick={() => setIsMenuOpen(false)}>News</Link>
           <Link to="/games" onClick={() => setIsMenuOpen(false)}>Games</Link>
           <Link to="/contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
         </nav>
@@ -119,6 +121,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/news" element={<News />} />
           </Routes>
         </main>
       </div>
