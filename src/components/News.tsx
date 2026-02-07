@@ -45,13 +45,16 @@ const News: React.FC = () => {
         
         let data: NewsResponse;
 
-        // Use direct API when: local dev, or GitHub Pages (no serverless /api/news)
+        // Local dev: direct NewsAPI call (with .env key). Production: use proxy (same-origin on Vercel, or Vercel URL from GitHub Pages).
         const isGitHubPages = typeof window !== 'undefined' && window.location.hostname === 'shawnxd.github.io';
-        if (import.meta.env.DEV || isGitHubPages) {
+        const newsApiUrl = isGitHubPages
+          ? 'https://shawnxd.vercel.app/api/news'
+          : '/api/news';
+
+        if (import.meta.env.DEV) {
           data = await fetchNewsLocal(category);
         } else {
-          // Vercel (or other host with serverless) - use proxy
-          const response = await fetch(`/api/news?category=${category}`);
+          const response = await fetch(`${newsApiUrl}?category=${category}`);
 
           if (!response.ok) {
             const errorData = await response.json().catch(() => null);

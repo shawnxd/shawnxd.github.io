@@ -3,10 +3,32 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
+const ALLOWED_ORIGINS = [
+  'https://shawnxd.github.io',
+  'https://shawnxd.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:4173',
+];
+
+function setCors(res: VercelResponse, origin: string | undefined) {
+  const allow = origin && ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  res.setHeader('Access-Control-Allow-Origin', allow);
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Max-Age', '86400');
+}
+
 export default async function handler(
   req: VercelRequest,
   res: VercelResponse,
 ) {
+  const origin = req.headers.origin;
+  setCors(res, origin);
+
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+
   // Prefer server-only env var; fall back to Vite name for consistency with GitHub Actions.
   const apiKey = process.env.NEWS_API_KEY || process.env.VITE_NEWS_API_KEY;
   const pageSize = process.env.NEWS_PAGE_SIZE || '10'; // Configurable page size, default to 10
