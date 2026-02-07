@@ -10,7 +10,7 @@ A **job scheduler** is a system that automatically schedules and executes jobs a
 
 This breakdown follows the structure and problem framing from [Hello Interview’s Job Scheduler breakdown](https://www.hellointerview.com/learn/system-design/problem-breakdowns/job-scheduler)—we expand on it with concrete design choices and tradeoffs.
 
-![Job Scheduler – System Design Overview](/images/job-scheduler/job-scheduler-hero.jpg)
+![Job Scheduler – System Design Overview](/images/job-scheduler/job-scheduler-hero.png)
 
 ## Key Concepts: Tasks vs Jobs
 
