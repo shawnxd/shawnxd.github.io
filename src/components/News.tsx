@@ -44,20 +44,20 @@ const News: React.FC = () => {
         setError(null);
         
         let data: NewsResponse;
-        
-        // Use local API for development, Vercel API for production
-        if (import.meta.env.DEV) {
-          // Local development - use direct API call
+
+        // Use direct API when: local dev, or GitHub Pages (no serverless /api/news)
+        const isGitHubPages = typeof window !== 'undefined' && window.location.hostname === 'shawnxd.github.io';
+        if (import.meta.env.DEV || isGitHubPages) {
           data = await fetchNewsLocal(category);
         } else {
-          // Production - use Vercel serverless function
+          // Vercel (or other host with serverless) - use proxy
           const response = await fetch(`/api/news?category=${category}`);
-          
+
           if (!response.ok) {
             const errorData = await response.json().catch(() => null);
             throw new Error(errorData?.error || `Failed to fetch news. Status: ${response.status}`);
           }
-          
+
           data = await response.json();
         }
         
