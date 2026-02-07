@@ -29,6 +29,20 @@ VITE_NEWS_API_KEY=your_actual_api_key_here
 2. Navigate to `/news` or check your homepage
 3. You should see the latest US news articles
 
+### 4. Deploying to Vercel
+
+On Vercel, the news section is powered by a serverless function (`/api/news`) that proxies requests to NewsAPI. You **must** set the API key in Vercel or the news page will show "API key is not configured."
+
+1. Open your project on [Vercel](https://vercel.com) → **Settings** → **Environment Variables**.
+2. Add one of:
+   - **`NEWS_API_KEY`** (recommended, server-only), or
+   - **`VITE_NEWS_API_KEY`** (same as local/build)
+3. Paste your [NewsAPI.org](https://newsapi.org/) key as the value.
+4. Optionally add **`NEWS_PAGE_SIZE`** (e.g. `10`) to control how many articles are returned.
+5. Redeploy the project so the new variables take effect.
+
+Without these variables, [https://shawnxd.vercel.app/news](https://shawnxd.vercel.app/news) will fail to load articles.
+
 ## Security Features
 
 ✅ **Environment Variables**: API key is stored in `.env` file (not in code)  

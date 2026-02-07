@@ -7,8 +7,8 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse,
 ) {
-  // Use the same environment variable name for consistency.
-  const apiKey = process.env.VITE_NEWS_API_KEY;
+  // Prefer server-only env var; fall back to Vite name for consistency with GitHub Actions.
+  const apiKey = process.env.NEWS_API_KEY || process.env.VITE_NEWS_API_KEY;
   const pageSize = process.env.NEWS_PAGE_SIZE || '10'; // Configurable page size, default to 10
 
   if (req.method !== 'GET') {
