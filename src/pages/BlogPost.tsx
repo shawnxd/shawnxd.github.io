@@ -20,6 +20,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import ReadingProgress from '../components/ReadingProgress';
 import TableOfContents from '../components/TableOfContents';
 import ShareButtons from '../components/ShareButtons';
+import ImageLightbox from '../components/ImageLightbox';
 
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 SyntaxHighlighter.registerLanguage('tsx', tsx);
@@ -134,6 +135,7 @@ const BlogPost: React.FC = () => {
   return (
     <article className="blog-post fade-in">
       <ReadingProgress />
+      <ImageLightbox />
       <Link to="/blog" className="back-link">
         <FaArrowLeft /> All writing
       </Link>
