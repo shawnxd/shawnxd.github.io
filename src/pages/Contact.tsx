@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiGooglescholar } from 'react-icons/si';
 
 interface ContactLink {
@@ -12,15 +12,9 @@ interface ContactLink {
 
 const links: ContactLink[] = [
   {
-    icon: <FaEnvelope />,
-    label: 'Email',
-    value: 'shawnxd@alumni.upenn.edu',
-    href: 'mailto:shawnxd@alumni.upenn.edu',
-  },
-  {
     icon: <FaLinkedin />,
     label: 'LinkedIn',
-    value: 'shawn-x-dong',
+    value: 'Send a message',
     href: 'https://www.linkedin.com/in/shawn-x-dong/',
     external: true,
   },
@@ -48,8 +42,8 @@ const Contact: React.FC = () => {
         <h1>Let's talk</h1>
         <p className="page-description">
           Happy to chat about distributed systems, data platforms, engineering
-          careers, or anything you think is interesting. The fastest way to reach me
-          is email — I usually reply within a day or two.
+          careers, or anything you think is interesting. LinkedIn is the best place
+          to reach me — I usually reply within a day or two.
         </p>
       </header>
       <div className="contact-links">

@@ -1,6 +1,6 @@
 import { Suspense, lazy, useState } from "react"
 import { Routes, Route, Link, NavLink } from "react-router-dom"
-import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa"
+import { FaLinkedin, FaGithub, FaMapMarkerAlt } from "react-icons/fa"
 import { SiGooglescholar } from "react-icons/si"
 import VisitorCounter from "./components/VisitorCounter"
 import ThemeToggle from "./components/ThemeToggle"
@@ -119,12 +119,6 @@ function App() {
                 aria-label="Google Scholar"
               >
                 <SiGooglescholar />
-              </a>
-              <a
-                href="mailto:shawnxd@alumni.upenn.edu"
-                aria-label="Email"
-              >
-                <FaEnvelope />
               </a>
             </div>
             <VisitorCounter />
