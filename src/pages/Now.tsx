@@ -158,7 +158,7 @@ const Now: React.FC = () => {
           description="Long-running sources I return to whenever I need to think more clearly about distributed systems."
         />
         <NowGroup
-          title="Reading — director / principal"
+          title="Reading - leadership"
           items={leadershipReading}
           description="Books and long-running blogs on engineering strategy, executive scope, and principal-level technical leadership."
         />

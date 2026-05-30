@@ -60,10 +60,10 @@ $light-text-subtle: #86868b;
 $light-border: #d2d2d7;
 $light-border-strong: #b9b9bf;
 $light-code-bg: #f2f2f4;
-$light-accent: #0071e3;
-$light-accent-hover: #0077ed;
-$light-accent-soft: rgba(0, 113, 227, 0.10);
-$light-link: #0066cc;
+$light-accent: #6e6e73;
+$light-accent-hover: #1d1d1f;
+$light-accent-soft: rgba(110, 110, 115, 0.12);
+$light-link: #515154;
 $light-success: #86868b;
 
 /* Dark theme — Apple-inspired dark surfaces */
@@ -76,10 +76,10 @@ $dark-text-subtle: #6e6e73;
 $dark-border: #38383a;
 $dark-border-strong: #48484a;
 $dark-code-bg: #2c2c2e;
-$dark-accent: #0a84ff;
-$dark-accent-hover: #409cff;
-$dark-accent-soft: rgba(10, 132, 255, 0.18);
-$dark-link: #2997ff;
+$dark-accent: #a1a1a6;
+$dark-accent-hover: #f5f5f7;
+$dark-accent-soft: rgba(161, 161, 166, 0.18);
+$dark-link: #c7c7cc;
 $dark-success: #8e8e93;
 
 /* Legacy gray aliases retained for components that still reference them */
