@@ -113,7 +113,7 @@ const Blog: React.FC = () => {
         <div className="blog-list">
           {externalPosts.length > 0 && (
             <section className="blog-year-section">
-              <div className="year-heading">Published elsewhere</div>
+              <div className="year-heading">Engineering Blog</div>
               <div className="blog-list-items">
                 {externalPosts.map(post => (
                   <article key={post.href} className="blog-list-item">
