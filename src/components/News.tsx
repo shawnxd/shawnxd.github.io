@@ -25,7 +25,7 @@ const News: React.FC = () => {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [category, setCategory] = useState('general');
+  const [category, setCategory] = useState('technology');
 
   const categories = [
     { value: 'general', label: 'General' },
