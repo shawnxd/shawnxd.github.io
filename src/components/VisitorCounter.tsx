@@ -26,16 +26,14 @@ const VisitorCounter: React.FC = () => {
         setVisitorCount(count);
       }
     });
-
   }, []);
 
   return (
-    <div className="visitor-counter" style={{ marginTop: '2rem', textAlign: 'center' }}>
-      <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>
-        Visitor Count: {visitorCount !== null ? visitorCount.toLocaleString() : 'Loading...'}
-      </p>
+    <div className="visitor-counter">
+      <span>Visitors</span>
+      <span>{visitorCount !== null ? visitorCount.toLocaleString() : '—'}</span>
     </div>
   );
 };
 
-export default VisitorCounter; 
+export default VisitorCounter;

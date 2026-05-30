@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import News from '../components/News';
 
 const NewsPage: React.FC = () => {
   return (
-    <div>
-      <h1>Latest News</h1>
-      <p>Stay updated with the latest news from around the United States.</p>
+    <div className="fade-in">
+      <header className="page-header">
+        <div className="page-eyebrow">Newsroom</div>
+        <h1>Latest headlines</h1>
+        <p className="page-description">
+          A passive scroll of headlines pulled live from trusted U.S. news sources
+          via NewsAPI. Pick a category to filter the feed.
+        </p>
+      </header>
       <News />
     </div>
   );
 };
 
-export default NewsPage; 
+export default NewsPage;

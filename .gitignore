@@ -124,4 +124,7 @@ dist-ssr
 .scss-cache
 
 # LESS
-.less-cache 
+.less-cache dist/
+
+# Build output
+dist/

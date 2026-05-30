@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaNewspaper, FaExternalLinkAlt, FaClock } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaClock } from 'react-icons/fa';
 import { fetchNewsLocal } from '../api/news-dev';
 
 interface NewsArticle {
@@ -100,8 +100,7 @@ const News: React.FC = () => {
   if (loading) {
     return (
       <div className="news-section">
-        <h2><FaNewspaper /> Latest News</h2>
-        <div className="loading">Loading latest news...</div>
+        <div className="loading">Loading latest news…</div>
       </div>
     );
   }
@@ -109,7 +108,6 @@ const News: React.FC = () => {
   if (error) {
     return (
       <div className="news-section">
-        <h2><FaNewspaper /> Latest News</h2>
         <div className="error">
           <p>Unable to load news at the moment.</p>
           <p><small>Error: {error}</small></p>
@@ -122,12 +120,11 @@ const News: React.FC = () => {
   return (
     <div className="news-section">
       <div className="news-header">
-        <h2><FaNewspaper /> Latest News</h2>
         <div className="category-selector">
-          <label htmlFor="category-select">Category: </label>
-          <select 
+          <label htmlFor="category-select">Category</label>
+          <select
             id="category-select"
-            value={category} 
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
             disabled={loading}
           >

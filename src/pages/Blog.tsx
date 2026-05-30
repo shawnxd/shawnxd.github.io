@@ -6,7 +6,9 @@ interface Post {
   slug: string;
   title: string;
   date: string;
+  rawDate: string;
   summary: string;
+  tags: string[];
 }
 
 const Blog: React.FC = () => {
@@ -17,9 +19,11 @@ const Blog: React.FC = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        // Use the correct relative glob pattern for Vite
-        const postModules = import.meta.glob('../content/posts/*.md', { query: '?raw', import: 'default' }) as Record<string, () => Promise<string>>;
-        console.log('Found post modules:', Object.keys(postModules));
+        const postModules = import.meta.glob('../content/posts/*.md', {
+          query: '?raw',
+          import: 'default',
+        }) as Record<string, () => Promise<string>>;
+
         const postPromises = Object.entries(postModules).map(async ([path, resolver]) => {
           try {
             const content = await resolver();
@@ -28,8 +32,16 @@ const Blog: React.FC = () => {
             return {
               slug,
               title: data.title || 'Untitled',
-              date: data.date ? new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '',
-              summary: data.summary || content.substring(0, 150) + '...',
+              rawDate: data.date || '',
+              date: data.date
+                ? new Date(data.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })
+                : '',
+              summary: data.summary || content.substring(0, 200) + '…',
+              tags: data.tags || [],
             };
           } catch (error) {
             console.error('Error processing post:', path, error);
@@ -37,13 +49,8 @@ const Blog: React.FC = () => {
           }
         });
         const allPosts = await Promise.all(postPromises);
-        const validPosts = allPosts.filter(post => post !== null) as Post[];
-        // Sort by date (newest first)
-        validPosts.sort((a, b) => {
-          const dateA = a.date ? new Date(a.date) : new Date(0);
-          const dateB = b.date ? new Date(b.date) : new Date(0);
-          return dateB.getTime() - dateA.getTime();
-        });
+        const validPosts = allPosts.filter(p => p !== null) as Post[];
+        validPosts.sort((a, b) => new Date(b.rawDate).getTime() - new Date(a.rawDate).getTime());
         setPosts(validPosts);
       } catch (error) {
         console.error('Error fetching posts:', error);
@@ -54,27 +61,54 @@ const Blog: React.FC = () => {
     fetchPosts();
   }, []);
 
-  if (loading) {
-    return <div>Loading posts...</div>;
-  }
+  // Group by year for the index
+  const postsByYear = posts.reduce<Record<string, Post[]>>((acc, post) => {
+    const year = post.rawDate ? new Date(post.rawDate).getFullYear().toString() : 'Unknown';
+    if (!acc[year]) acc[year] = [];
+    acc[year].push(post);
+    return acc;
+  }, {});
+
+  const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
 
   return (
-    <div>
-      <h1>Blog</h1>
-      {posts.length === 0 ? (
-        <div>
-          <p>No posts found. Check the console for debugging information.</p>
-          <p>Posts array length: {posts.length}</p>
+    <div className="fade-in">
+      <header className="page-header">
+        <div className="page-eyebrow">Writing</div>
+        <h1>Notes & essays</h1>
+        <p className="page-description">
+          Long-form thinking on distributed systems, the design of data platforms,
+          and the engineering work in between.
+        </p>
+      </header>
+
+      {loading ? (
+        <div className="loading-state">Loading posts…</div>
+      ) : posts.length === 0 ? (
+        <div className="empty-state">
+          <p>No posts found.</p>
         </div>
       ) : (
-        posts.map(post => (
-          <div key={post.slug}>
-            <h2><Link to={`/blog/${post.slug}`}>{post.title}</Link></h2>
-            <p><em>{post.date}</em></p>
-            <p>{post.summary}</p>
-            <hr />
-          </div>
-        ))
+        <div className="blog-list">
+          {years.map(year => (
+            <section key={year} className="blog-year-section">
+              <div className="year-heading">{year}</div>
+              <div className="blog-list-items">
+                {postsByYear[year].map(post => (
+                  <article key={post.slug} className="blog-list-item">
+                    <Link to={`/blog/${post.slug}`} className="blog-list-link">
+                      <div className="blog-list-date">{post.date}</div>
+                      <div className="blog-list-content">
+                        <h3 className="blog-list-title">{post.title}</h3>
+                        <p className="blog-list-summary">{post.summary}</p>
+                      </div>
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
       )}
     </div>
   );
