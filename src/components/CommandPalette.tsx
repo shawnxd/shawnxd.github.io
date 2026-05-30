@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import matter from 'gray-matter';
 import { FaSearch } from 'react-icons/fa';
+import { parseMarkdownFrontmatter } from '../utils/frontmatter';
 
 interface CommandItem {
   id: string;
@@ -44,7 +44,7 @@ const CommandPalette: React.FC = () => {
       const posts: PostMeta[] = await Promise.all(
         Object.entries(modules).map(async ([path, resolver]) => {
           const content = await resolver();
-          const { data } = matter(content);
+          const { data } = parseMarkdownFrontmatter(content);
           const slug = path.split('/').pop()?.replace('.md', '') || '';
           return { slug, title: data.title || slug };
         })
@@ -168,14 +168,15 @@ const CommandPalette: React.FC = () => {
                 <div className="command-group-label">{group}</div>
                 {items.map(item => {
                   runningIndex += 1;
-                  const isSelected = runningIndex === selectedIndex;
+                  const itemIndex = runningIndex;
+                  const isSelected = itemIndex === selectedIndex;
                   return (
                     <button
                       type="button"
                       key={item.id}
                       className={`command-item ${isSelected ? 'is-selected' : ''}`}
                       onClick={() => onSelect(item)}
-                      onMouseEnter={() => setSelectedIndex(runningIndex)}
+                      onMouseEnter={() => setSelectedIndex(itemIndex)}
                     >
                       <span>{item.label}</span>
                       {item.hint && <span className="command-hint">{item.hint}</span>}
