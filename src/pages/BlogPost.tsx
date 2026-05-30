@@ -18,6 +18,7 @@ import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/pris
 import matter from 'gray-matter';
 import { FaArrowLeft } from 'react-icons/fa';
 import ReadingProgress from '../components/ReadingProgress';
+import TableOfContents from '../components/TableOfContents';
 
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 SyntaxHighlighter.registerLanguage('tsx', tsx);
@@ -153,7 +154,8 @@ const BlogPost: React.FC = () => {
           </div>
         )}
       </header>
-      <div className="markdown-body">
+      <div className="blog-post-layout">
+        <div className="markdown-body">
         <ReactMarkdown
           components={{
             code({ inline, className, children, ...props }: any) {
@@ -193,6 +195,10 @@ const BlogPost: React.FC = () => {
         >
           {post.content}
         </ReactMarkdown>
+        </div>
+        <aside className="blog-post-aside">
+          <TableOfContents />
+        </aside>
       </div>
       <footer className="blog-post-footer">
         <Link to="/blog" className="btn btn-ghost">
