@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shawn Dong — Software Engineer</title>
+    <script>
+      // SPA fallback for GitHub Pages. Encodes the requested path as a query
+      // param and redirects to the SPA root. The decoder in index.html restores
+      // the URL before React Router boots. See: spa-github-pages by rafgraph.
+      (function () {
+        var pathSegmentsToKeep = 0; // user page at root of *.github.io
+        var l = window.location;
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
