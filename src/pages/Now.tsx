@@ -15,13 +15,13 @@ const isLinkItem = (item: SimpleItem | LinkItem): item is LinkItem =>
 
 const workItems: SimpleItem[] = [
   { text: 'Leading platform work on data ingestion at Uber' },
-  { text: 'Mentoring two junior engineers through their first promo' },
+  { text: 'Building auto-observability libraries for service teams' },
+  { text: 'Contributing to traffic and demand forecasting systems' },
+  { text: 'Improving code-quality tooling for the wider eng org' },
   { text: 'Drafting a design doc for a schema-evolution framework' },
-  { text: 'Reviewing rollout plans for a multi-region migration' },
-  { text: 'Untangling on-call hot spots in the ingestion pipeline' },
+  { text: 'Mentoring two junior engineers through their first promo' },
   { text: 'Pushing for sharper SLOs on the highest-traffic paths' },
   { text: 'Running a weekly office hour for the broader data org' },
-  { text: 'Helping shape the next quarter of platform roadmap' },
 ];
 
 // A principal-engineer-style reading list — long-running sources I keep coming back to
@@ -93,12 +93,12 @@ const leadershipReading: LinkItem[] = [
 
 const sideProjectItems: SimpleItem[] = [
   { text: 'Polishing this site — design, performance, dark mode' },
+  { text: 'Contributing to a Django open-source project on weekends' },
+  { text: 'Writing long-form essays on distributed-systems design' },
+  { text: 'Interviewing prospective students as a Penn Ambassador' },
+  { text: 'Maintaining a handful of small browser games on GitHub' },
   { text: 'A small CLI for organizing engineering notes' },
   { text: 'Slowly working on a longer essay on platform abstractions' },
-  { text: 'Prototyping a local-first markdown reader for papers' },
-  { text: 'Reading the source of a few small open-source databases' },
-  { text: 'Tinkering with a tiny static-site generator in Go' },
-  { text: 'Sketching a board-game prototype with paper and dice' },
   { text: 'Trying to hold a steady weekly running habit' },
 ];
 
