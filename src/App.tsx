@@ -36,10 +36,7 @@ function App() {
       <ScrollToTop />
       <header id="header">
         <div className="site-title">
-          <Link to="/">
-            <img src="/images/shawn-logo.svg" alt="" className="site-logo" aria-hidden="true" />
-            <span>Shawn Dong</span>
-          </Link>
+          <Link to="/">Shawn Dong</Link>
         </div>
         <button
           className="mobile-nav-toggle"
