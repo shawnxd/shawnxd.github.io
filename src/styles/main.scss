@@ -1748,6 +1748,14 @@ kbd {
     }
   }
 
+  .now-group-description {
+    color: var(--text-subtle);
+    font-size: $type-size-8;
+    line-height: $line-height-base;
+    margin: 0 0 $space-4;
+    max-width: 36ch;
+  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -1769,6 +1777,32 @@ kbd {
       position: absolute;
       left: 0;
       color: var(--text-subtle);
+    }
+
+    a {
+      color: var(--text);
+      transition: $transition-fast;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+
+      &:hover {
+        color: var(--accent);
+      }
+
+      .now-link-title {
+        font-weight: $font-weight-medium;
+      }
+
+      .now-link-author {
+        color: var(--text-subtle);
+        font-size: $type-size-8;
+        margin-left: $space-1;
+      }
+
+      &:hover .now-link-author {
+        color: var(--text-muted);
+      }
     }
   }
 }
