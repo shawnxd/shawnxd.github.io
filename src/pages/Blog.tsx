@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import matter from 'gray-matter';
+import { parseMarkdownFrontmatter } from '../utils/frontmatter';
 
 interface Post {
   slug: string;
@@ -48,7 +48,7 @@ const Blog: React.FC = () => {
         const postPromises = Object.entries(postModules).map(async ([path, resolver]) => {
           try {
             const content = await resolver();
-            const { data } = matter(content);
+            const { data } = parseMarkdownFrontmatter(content);
             const slug = path.split('/').pop()?.replace('.md', '') || '';
             return {
               slug,

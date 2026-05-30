@@ -15,12 +15,12 @@ import sql from 'react-syntax-highlighter/dist/esm/languages/prism/sql';
 import yaml from 'react-syntax-highlighter/dist/esm/languages/prism/yaml';
 import markdown from 'react-syntax-highlighter/dist/esm/languages/prism/markdown';
 import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import matter from 'gray-matter';
 import { FaArrowLeft } from 'react-icons/fa';
 import ReadingProgress from '../components/ReadingProgress';
 import TableOfContents from '../components/TableOfContents';
 import ShareButtons from '../components/ShareButtons';
 import ImageLightbox from '../components/ImageLightbox';
+import { parseMarkdownFrontmatter } from '../utils/frontmatter';
 
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 SyntaxHighlighter.registerLanguage('tsx', tsx);
@@ -80,7 +80,7 @@ const BlogPost: React.FC = () => {
 
         if (postResolver) {
           const content = await postResolver();
-          const { data, content: markdownContent } = matter(content);
+          const { data, content: markdownContent } = parseMarkdownFrontmatter(content);
           setPost({
             frontmatter: {
               title: data.title || 'Untitled',
