@@ -141,7 +141,7 @@ function App() {
         </main>
       </div>
       <footer className="site-footer">
-        <div>© {new Date().getFullYear()} Shawn Dong. Crafted in Sunnyvale.</div>
+        <div>© {new Date().getFullYear()} Shawn Dong. Sunnyvale, California.</div>
         <div className="footer-meta">
           <a href="https://github.com/shawnxd" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href="https://www.linkedin.com/in/shawn-x-dong/" target="_blank" rel="noopener noreferrer">LinkedIn</a>

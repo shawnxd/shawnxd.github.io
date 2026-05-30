@@ -1269,6 +1269,15 @@ hr {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .blog-list-source {
+    font-size: $type-size-8;
+    color: var(--text-subtle);
+    margin-top: $space-2;
+    letter-spacing: $tracking-wide;
+    text-transform: uppercase;
+    font-weight: $font-weight-medium;
+  }
 }
 
 @media (max-width: 768px) {

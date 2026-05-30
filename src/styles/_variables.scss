@@ -50,21 +50,21 @@ $tracking-wider: 0.08em;
 $white: #ffffff;
 $black: #000000;
 
-/* Light theme — warm off-white background, deep charcoal text */
-$light-bg: #fafaf7;
+/* Light theme — cool neutral light-gray background, near-black text */
+$light-bg: #f4f5f7;
 $light-surface: #ffffff;
-$light-surface-alt: #f4f3ef;
-$light-text: #1a1a1a;
-$light-text-muted: #555;
-$light-text-subtle: #888;
-$light-border: #e5e3dd;
-$light-border-strong: #d4d2cb;
-$light-code-bg: #f4f3ef;
-$light-accent: #1f6e6c;       // deep teal — distinctive, professional
-$light-accent-hover: #155957;
-$light-accent-soft: rgba(31, 110, 108, 0.10);
-$light-link: #1f6e6c;
-$light-success: #5a8a4e;
+$light-surface-alt: #ebedf0;
+$light-text: #1d1d1f;
+$light-text-muted: #515154;
+$light-text-subtle: #86868b;
+$light-border: #d2d2d7;
+$light-border-strong: #b6b6bb;
+$light-code-bg: #ebedf0;
+$light-accent: #0e6e6c;       // refined teal — still distinctive
+$light-accent-hover: #0a5957;
+$light-accent-soft: rgba(14, 110, 108, 0.10);
+$light-link: #0e6e6c;
+$light-success: #4f8a4a;
 
 /* Dark theme — true charcoal background, warm ivory text */
 $dark-bg: #131210;

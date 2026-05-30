@@ -11,6 +11,27 @@ interface Post {
   tags: string[];
 }
 
+interface ExternalPost {
+  title: string;
+  href: string;
+  source: string;
+  date: string;
+  rawDate: string;
+  summary: string;
+}
+
+const externalPosts: ExternalPost[] = [
+  {
+    title: 'How Uber Standardized Mobile Analytics for Cross-Platform Insights',
+    href: 'https://www.uber.com/blog/how-uber-standardized-mobile-analytics/',
+    source: 'Uber Engineering Blog',
+    rawDate: '2025-10-02',
+    date: 'October 2, 2025',
+    summary:
+      'How we unified iOS and Android event instrumentation — standardized event types, automatic metadata, and analytics logic lifted out of feature code into platform components.',
+  },
+];
+
 const Blog: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
@@ -84,12 +105,36 @@ const Blog: React.FC = () => {
 
       {loading ? (
         <div className="loading-state">Loading posts…</div>
-      ) : posts.length === 0 ? (
+      ) : posts.length === 0 && externalPosts.length === 0 ? (
         <div className="empty-state">
           <p>No posts found.</p>
         </div>
       ) : (
         <div className="blog-list">
+          {externalPosts.length > 0 && (
+            <section className="blog-year-section">
+              <div className="year-heading">Published elsewhere</div>
+              <div className="blog-list-items">
+                {externalPosts.map(post => (
+                  <article key={post.href} className="blog-list-item">
+                    <a
+                      href={post.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="blog-list-link"
+                    >
+                      <div className="blog-list-date">{post.date}</div>
+                      <div className="blog-list-content">
+                        <h3 className="blog-list-title">{post.title}</h3>
+                        <p className="blog-list-summary">{post.summary}</p>
+                        <div className="blog-list-source">{post.source} ↗</div>
+                      </div>
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
           {years.map(year => (
             <section key={year} className="blog-year-section">
               <div className="year-heading">{year}</div>
