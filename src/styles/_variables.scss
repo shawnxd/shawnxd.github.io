@@ -60,10 +60,10 @@ $light-text-subtle: #888;
 $light-border: #e5e3dd;
 $light-border-strong: #d4d2cb;
 $light-code-bg: #f4f3ef;
-$light-accent: #b8541f;       // burnt sienna — distinctive, warm
-$light-accent-hover: #964419;
-$light-accent-soft: rgba(184, 84, 31, 0.08);
-$light-link: #b8541f;
+$light-accent: #1f6e6c;       // deep teal — distinctive, professional
+$light-accent-hover: #155957;
+$light-accent-soft: rgba(31, 110, 108, 0.10);
+$light-link: #1f6e6c;
 $light-success: #5a8a4e;
 
 /* Dark theme — true charcoal background, warm ivory text */
@@ -76,10 +76,10 @@ $dark-text-subtle: #807d74;
 $dark-border: #2f2e2a;
 $dark-border-strong: #43413c;
 $dark-code-bg: #232220;
-$dark-accent: #ea8654;       // warmer burnt sienna for dark mode
-$dark-accent-hover: #f59765;
-$dark-accent-soft: rgba(234, 134, 84, 0.14);
-$dark-link: #ea8654;
+$dark-accent: #5fc1bf;       // brighter teal for dark mode
+$dark-accent-hover: #7dd4d2;
+$dark-accent-soft: rgba(95, 193, 191, 0.14);
+$dark-link: #5fc1bf;
 $dark-success: #82b572;
 
 /* Legacy gray aliases retained for components that still reference them */

@@ -11,41 +11,6 @@ interface Post {
   summary: string;
 }
 
-interface Experience {
-  period: string;
-  role: string;
-  company: string;
-  description: string;
-  tags: string[];
-}
-
-const experiences: Experience[] = [
-  {
-    period: '2020 — Now',
-    role: 'Staff Software Engineer',
-    company: 'Uber',
-    description:
-      'Building data and platform systems used by thousands of engineers. Focus on large-scale ingest pipelines, schema evolution, and developer tooling.',
-    tags: ['Go', 'Java', 'Kafka', 'Spark', 'TypeScript'],
-  },
-  {
-    period: '2018 — 2020',
-    role: 'Software Engineer',
-    company: 'Backend & Data Platforms',
-    description:
-      'Owned services at the intersection of product and platform — backend APIs, frontend dashboards, and data pipelines.',
-    tags: ['Python', 'PostgreSQL', 'React', 'gRPC'],
-  },
-  {
-    period: 'Earlier',
-    role: 'Computer & Information Science',
-    company: 'University of Pennsylvania',
-    description:
-      'Studied distributed systems, machine learning, and HCI. Research and side projects spanning games, search, and visualization.',
-    tags: ['Research', 'Algorithms', 'Systems'],
-  },
-];
-
 const focusAreas = [
   {
     title: 'Distributed Systems',
@@ -162,29 +127,6 @@ const Home: React.FC = () => {
               <h3>{area.title}</h3>
               <p>{area.description}</p>
             </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section fade-in fade-in-delay-2">
-        <div className="section-heading">
-          <h2>Experience</h2>
-        </div>
-        <div className="experience-list">
-          {experiences.map(exp => (
-            <article key={exp.role + exp.company} className="experience-item">
-              <div className="experience-period">{exp.period}</div>
-              <div className="experience-content">
-                <h3 className="experience-role">{exp.role}</h3>
-                <div className="experience-company">{exp.company}</div>
-                <p className="experience-description">{exp.description}</p>
-                <div className="experience-tags">
-                  {exp.tags.map(tag => (
-                    <span key={tag} className="tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            </article>
           ))}
         </div>
       </section>
