@@ -36,7 +36,7 @@ function App() {
       <ScrollToTop />
       <header id="header">
         <div className="site-title">
-          <Link to="/">Shawn X. Dong</Link>
+          <Link to="/">Shawn Dong</Link>
         </div>
         <button
           className="mobile-nav-toggle"
@@ -72,12 +72,12 @@ function App() {
             <div className="profile-photo">
               <img
                 src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=vJbvaGcAAAAJ&citpid=5"
-                alt="Shawn X. Dong"
+                alt="Shawn Dong"
                 loading="lazy"
               />
             </div>
-            <h2 className="profile-name">Shawn X. Dong</h2>
-            <div className="profile-role">Staff Software Engineer</div>
+            <h2 className="profile-name">Shawn Dong</h2>
+            <div className="profile-role">Software Engineer</div>
             <div className="profile-location">
               <FaMapMarkerAlt aria-hidden="true" />
               <span>Sunnyvale, CA</span>
@@ -147,7 +147,7 @@ function App() {
         </main>
       </div>
       <footer className="site-footer">
-        <div>© {new Date().getFullYear()} Shawn X. Dong. Crafted in Sunnyvale.</div>
+        <div>© {new Date().getFullYear()} Shawn Dong. Crafted in Sunnyvale.</div>
         <div className="footer-meta">
           <a href="https://github.com/shawnxd" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a href="https://www.linkedin.com/in/shawn-x-dong/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
