@@ -1,8 +1,9 @@
 import React from 'react';
-import { FaExternalLinkAlt, FaCode } from 'react-icons/fa';
+import { FaCode, FaExternalLinkAlt, FaGamepad, FaKeyboard, FaRegCircle, FaRocket, FaSpaceShuttle } from 'react-icons/fa';
+import type { IconType } from 'react-icons';
 
 interface Game {
-  emoji: string;
+  icon: IconType;
   title: string;
   tech: string;
   year: number;
@@ -13,7 +14,7 @@ interface Game {
 
 const games: Game[] = [
   {
-    emoji: '🔴🔵',
+    icon: FaRegCircle,
     title: 'Connect Four',
     tech: 'TypeScript / Canvas',
     year: 2024,
@@ -22,7 +23,7 @@ const games: Game[] = [
     repo: 'https://github.com/shawnxd/connect-4',
   },
   {
-    emoji: '🕹️',
+    icon: FaGamepad,
     title: '5 In A Row',
     tech: 'JS / HTML5',
     year: 2023,
@@ -31,7 +32,7 @@ const games: Game[] = [
     repo: 'https://github.com/shawnxd/5-in-a-row',
   },
   {
-    emoji: '🚀',
+    icon: FaRocket,
     title: 'Captain Rogers',
     tech: 'JS / HTML5',
     year: 2023,
@@ -40,7 +41,7 @@ const games: Game[] = [
     repo: 'https://github.com/shawnxd/captain-rogers',
   },
   {
-    emoji: '👾',
+    icon: FaSpaceShuttle,
     title: 'Alien Invasion',
     tech: 'JS / HTML5',
     year: 2022,
@@ -49,7 +50,7 @@ const games: Game[] = [
     repo: 'https://github.com/shawnxd/alien-invasion',
   },
   {
-    emoji: '🐍',
+    icon: FaKeyboard,
     title: 'Greedy Snake',
     tech: 'JS / Canvas',
     year: 2020,
@@ -71,26 +72,31 @@ const Games: React.FC = () => {
         </p>
       </header>
       <div className="games-list">
-        {games.map(game => (
-          <article key={game.title} className="game-item">
-            <div className="game-emoji">{game.emoji}</div>
-            <h3 className="game-title">{game.title}</h3>
-            <div className="game-meta">{game.tech} · {game.year}</div>
-            <p className="game-description">{game.description}</p>
-            <div className="game-links">
-              {game.link && (
-                <a href={game.link} target="_blank" rel="noopener noreferrer">
-                  <FaExternalLinkAlt /> Play
-                </a>
-              )}
-              {game.repo && (
-                <a href={game.repo} target="_blank" rel="noopener noreferrer">
-                  <FaCode /> Source
-                </a>
-              )}
-            </div>
-          </article>
-        ))}
+        {games.map(game => {
+          const Icon = game.icon;
+          return (
+            <article key={game.title} className="game-item">
+              <div className="game-icon" aria-hidden="true">
+                <Icon />
+              </div>
+              <h3 className="game-title">{game.title}</h3>
+              <div className="game-meta">{game.tech} · {game.year}</div>
+              <p className="game-description">{game.description}</p>
+              <div className="game-links">
+                {game.link && (
+                  <a href={game.link} target="_blank" rel="noopener noreferrer">
+                    <FaExternalLinkAlt /> Play
+                  </a>
+                )}
+                {game.repo && (
+                  <a href={game.repo} target="_blank" rel="noopener noreferrer">
+                    <FaCode /> Source
+                  </a>
+                )}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </div>
   );

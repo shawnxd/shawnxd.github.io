@@ -80,7 +80,7 @@ function App() {
             <div className="profile-role">Software Engineer</div>
             <div className="profile-location">
               <FaMapMarkerAlt aria-hidden="true" />
-              <span>Sunnyvale, CA</span>
+              <span>Sunnyvale, California</span>
             </div>
             <p className="profile-bio">
               I build large-scale distributed systems and the data platforms that

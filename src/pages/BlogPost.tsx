@@ -181,7 +181,7 @@ const BlogPost: React.FC = () => {
                       margin: '1.5rem 0',
                       background: 'var(--code-bg)',
                     }}
-                    codeTagProps={{ style: { fontFamily: 'JetBrains Mono, monospace' } }}
+                    codeTagProps={{ style: { fontFamily: 'SFMono-Regular, SF Mono, ui-monospace, monospace' } }}
                     {...props}
                   >
                     {codeString}

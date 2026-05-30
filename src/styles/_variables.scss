@@ -4,14 +4,14 @@
    Typography
    ========================================================================== */
 
-$serif: "Source Serif Pro", "Charter", "Iowan Old Style", "Iowan", "Apple Garamond", Baskerville, "Times New Roman", Georgia, serif;
-$sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-$display-font: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-$monospace: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$serif: "New York", "Iowan Old Style", "Apple Garamond", Georgia, serif;
+$sans-serif: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$display-font: "SF Pro Display", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+$monospace: "SFMono-Regular", "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
 $global-font-family: $sans-serif;
 $header-font-family: $display-font;
-$caption-font-family: $serif;
+$caption-font-family: $sans-serif;
 
 /* Type scale - perfect fourth (1.333) */
 $type-size-1: 3.052rem;   // ~49px display
@@ -37,8 +37,8 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 /* Letter spacing */
-$tracking-tight: -0.02em;
-$tracking-snug: -0.01em;
+$tracking-tight: 0;
+$tracking-snug: 0;
 $tracking-normal: 0;
 $tracking-wide: 0.04em;
 $tracking-wider: 0.08em;
@@ -50,37 +50,37 @@ $tracking-wider: 0.08em;
 $white: #ffffff;
 $black: #000000;
 
-/* Light theme — cool neutral light-gray background, near-black text */
-$light-bg: #f4f5f7;
+/* Light theme — Apple-inspired neutral background, near-black text */
+$light-bg: #f5f5f7;
 $light-surface: #ffffff;
-$light-surface-alt: #ebedf0;
+$light-surface-alt: #f2f2f4;
 $light-text: #1d1d1f;
-$light-text-muted: #515154;
+$light-text-muted: #6e6e73;
 $light-text-subtle: #86868b;
 $light-border: #d2d2d7;
-$light-border-strong: #b6b6bb;
-$light-code-bg: #ebedf0;
-$light-accent: #0e6e6c;       // refined teal — still distinctive
-$light-accent-hover: #0a5957;
-$light-accent-soft: rgba(14, 110, 108, 0.10);
-$light-link: #0e6e6c;
-$light-success: #4f8a4a;
+$light-border-strong: #b9b9bf;
+$light-code-bg: #f2f2f4;
+$light-accent: #0071e3;
+$light-accent-hover: #0077ed;
+$light-accent-soft: rgba(0, 113, 227, 0.10);
+$light-link: #0066cc;
+$light-success: #86868b;
 
-/* Dark theme — true charcoal background, warm ivory text */
-$dark-bg: #131210;
-$dark-surface: #1d1c1a;
-$dark-surface-alt: #272623;
-$dark-text: #ece9e1;
-$dark-text-muted: #b0ada4;
-$dark-text-subtle: #807d74;
-$dark-border: #2f2e2a;
-$dark-border-strong: #43413c;
-$dark-code-bg: #232220;
-$dark-accent: #5fc1bf;       // brighter teal for dark mode
-$dark-accent-hover: #7dd4d2;
-$dark-accent-soft: rgba(95, 193, 191, 0.14);
-$dark-link: #5fc1bf;
-$dark-success: #82b572;
+/* Dark theme — Apple-inspired dark surfaces */
+$dark-bg: #000000;
+$dark-surface: #1c1c1e;
+$dark-surface-alt: #2c2c2e;
+$dark-text: #f5f5f7;
+$dark-text-muted: #a1a1a6;
+$dark-text-subtle: #6e6e73;
+$dark-border: #38383a;
+$dark-border-strong: #48484a;
+$dark-code-bg: #2c2c2e;
+$dark-accent: #0a84ff;
+$dark-accent-hover: #409cff;
+$dark-accent-soft: rgba(10, 132, 255, 0.18);
+$dark-link: #2997ff;
+$dark-success: #8e8e93;
 
 /* Legacy gray aliases retained for components that still reference them */
 $gray-100: #f8f9fa;
@@ -103,9 +103,9 @@ $text-color: $light-text;
 $link-color: $light-link;
 $link-color-hover: $light-accent-hover;
 $border-color: $light-border;
-$border-radius: 6px;
-$border-radius-lg: 10px;
-$border-radius-xl: 16px;
+$border-radius: 10px;
+$border-radius-lg: 14px;
+$border-radius-xl: 20px;
 
 /*
    Spacing tokens (8pt grid)
@@ -126,10 +126,10 @@ $space-10: 8rem;
    Shadows & transitions
    ========================================================================== */
 
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
-$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-$shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-$shadow-xl: 0 20px 40px -10px rgba(0, 0, 0, 0.1), 0 10px 20px -5px rgba(0, 0, 0, 0.06);
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.10);
+$shadow-xl: 0 28px 70px rgba(0, 0, 0, 0.14);
 
 $box-shadow: $shadow-md;
 $global-transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);

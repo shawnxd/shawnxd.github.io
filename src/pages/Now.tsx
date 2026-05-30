@@ -70,24 +70,49 @@ const readingList: LinkItem[] = [
 
 const leadershipReading: LinkItem[] = [
   {
+    text: "The Engineering Executive's Primer",
+    author: 'Will Larson',
+    href: 'https://lethain.com/eeprimer/',
+  },
+  {
+    text: 'Crafting Engineering Strategy',
+    author: 'Will Larson',
+    href: 'https://craftingengstrategy.com/',
+  },
+  {
+    text: 'An Elegant Puzzle',
+    author: 'Will Larson',
+    href: 'https://lethain.com/elegant-puzzle/',
+  },
+  {
+    text: "The Manager's Path",
+    author: 'Camille Fournier',
+    href: 'https://www.oreilly.com/library/view/the-managers-path/9781491973882/',
+  },
+  {
+    text: 'The Software Engineer’s Guidebook',
+    author: 'Gergely Orosz',
+    href: 'https://www.pragmaticengineer.com/',
+  },
+  {
     text: 'Irrational Exuberance — staff-plus essays',
     author: 'Will Larson',
     href: 'https://lethain.com/',
   },
   {
-    text: 'On Engineering Management',
-    author: 'Camille Fournier',
-    href: 'https://skamille.medium.com/',
+    text: 'The Pragmatic Engineer',
+    author: 'Gergely Orosz',
+    href: 'https://blog.pragmaticengineer.com/',
   },
   {
-    text: 'The Staff Engineer’s Path archive',
-    author: 'Tanya Reilly',
-    href: 'https://noidea.dog/blog',
+    text: 'Rands in Repose',
+    author: 'Michael Lopp',
+    href: 'https://randsinrepose.com/',
   },
   {
-    text: 'High Scalability post archive',
-    author: 'highscalability.com',
-    href: 'http://highscalability.com/',
+    text: 'Engineering Management for the Rest of Us',
+    author: 'Sarah Drasner',
+    href: 'https://www.engmanagement.dev/',
   },
 ];
 
@@ -133,9 +158,9 @@ const Now: React.FC = () => {
           description="Long-running sources I return to whenever I need to think more clearly about distributed systems."
         />
         <NowGroup
-          title="Reading — leadership"
+          title="Reading — director / principal"
           items={leadershipReading}
-          description="The handful of writers I learned the most from on the soft side of senior engineering."
+          description="Books and long-running blogs on engineering strategy, executive scope, and principal-level technical leadership."
         />
       </div>
     </div>
