@@ -220,7 +220,7 @@ hr {
 
 .container {
   display: grid;
-  grid-template-columns: $sidebar-width 1fr;
+  grid-template-columns: $sidebar-width minmax(0, 1fr);
   max-width: $page-max-width;
   margin: 0 auto;
   min-height: calc(100vh - 73px);
@@ -246,8 +246,22 @@ hr {
   .contact-links,
   .page-header,
   .news-section,
-  .news-grid {
+  .news-grid,
+  .now-grid {
     max-width: 100%;
+  }
+}
+
+/* On wider screens, give the main column more room */
+@media (min-width: 1280px) {
+  #main {
+    padding: $space-7 $space-9;
+  }
+}
+
+@media (min-width: 1600px) {
+  #main > * {
+    max-width: 880px;
   }
 }
 
@@ -1307,15 +1321,15 @@ hr {
 }
 
 /* TOC: only show on wide enough screens (must clear sidebar + content) */
-@media (min-width: 1200px) {
+@media (min-width: 1280px) {
   .blog-post {
     max-width: 100%;
   }
 
   .blog-post-layout {
     display: grid;
-    grid-template-columns: minmax(0, $content-max-width) 220px;
-    gap: $space-7;
+    grid-template-columns: minmax(0, $content-max-width) 240px;
+    gap: $space-8;
 
     .blog-post-aside {
       display: block;
