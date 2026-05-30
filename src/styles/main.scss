@@ -615,6 +615,14 @@ hr {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 100px;
+  text-decoration: none;
+  transition: $transition-fast;
+
+  &:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+  }
 
   .availability-dot {
     width: 8px;

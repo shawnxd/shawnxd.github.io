@@ -104,17 +104,22 @@ const Home: React.FC = () => {
           things underneath them.
         </p>
         <div className="hero-cta">
-          <Link to="/blog" className="btn btn-primary">
-            Read my writing <FaArrowRight />
+          <Link to="/contact" className="btn btn-primary">
+            Get in touch <FaArrowRight />
           </Link>
-          <Link to="/contact" className="btn btn-ghost">
-            Get in touch
+          <Link to="/blog" className="btn btn-ghost">
+            Read my writing
           </Link>
         </div>
-        <div className="availability-indicator">
+        <a
+          href="https://www.linkedin.com/messaging/compose/?recipient=shawn-x-dong"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="availability-indicator"
+        >
           <span className="availability-dot" aria-hidden="true" />
           <span>Open to interesting conversations about distributed systems</span>
-        </div>
+        </a>
       </section>
 
       <section className="section fade-in fade-in-delay-1">
