@@ -19,6 +19,7 @@ import matter from 'gray-matter';
 import { FaArrowLeft } from 'react-icons/fa';
 import ReadingProgress from '../components/ReadingProgress';
 import TableOfContents from '../components/TableOfContents';
+import ShareButtons from '../components/ShareButtons';
 
 SyntaxHighlighter.registerLanguage('jsx', jsx);
 SyntaxHighlighter.registerLanguage('tsx', tsx);
@@ -201,6 +202,7 @@ const BlogPost: React.FC = () => {
         </aside>
       </div>
       <footer className="blog-post-footer">
+        <ShareButtons title={post.frontmatter.title} />
         <Link to="/blog" className="btn btn-ghost">
           <FaArrowLeft /> More writing
         </Link>

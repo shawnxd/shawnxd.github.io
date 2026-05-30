@@ -130,7 +130,6 @@ const Home: React.FC = () => {
   return (
     <div className="home-content">
       <section className="home-hero fade-in">
-        <div className="hero-eyebrow">Staff Software Engineer</div>
         <h1 className="hero-title">
           Building <span className="accent">durable</span> systems and the teams that own them.
         </h1>
