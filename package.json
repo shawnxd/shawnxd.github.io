@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "node scripts/create-route-indexes.mjs",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"
   },
