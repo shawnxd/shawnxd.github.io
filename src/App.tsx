@@ -71,7 +71,7 @@ function App() {
           <div className="profile-card">
             <div className="profile-photo">
               <img
-                src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=vJbvaGcAAAAJ&citpid=5"
+                src="/images/profile.jpg"
                 alt="Shawn Dong"
                 loading="lazy"
               />

@@ -17,6 +17,11 @@ const workItems: SimpleItem[] = [
   { text: 'Leading platform work on data ingestion at Uber' },
   { text: 'Mentoring two junior engineers through their first promo' },
   { text: 'Drafting a design doc for a schema-evolution framework' },
+  { text: 'Reviewing rollout plans for a multi-region migration' },
+  { text: 'Untangling on-call hot spots in the ingestion pipeline' },
+  { text: 'Pushing for sharper SLOs on the highest-traffic paths' },
+  { text: 'Running a weekly office hour for the broader data org' },
+  { text: 'Helping shape the next quarter of platform roadmap' },
 ];
 
 // A principal-engineer-style reading list — long-running sources I keep coming back to
@@ -90,6 +95,11 @@ const sideProjectItems: SimpleItem[] = [
   { text: 'Polishing this site — design, performance, dark mode' },
   { text: 'A small CLI for organizing engineering notes' },
   { text: 'Slowly working on a longer essay on platform abstractions' },
+  { text: 'Prototyping a local-first markdown reader for papers' },
+  { text: 'Reading the source of a few small open-source databases' },
+  { text: 'Tinkering with a tiny static-site generator in Go' },
+  { text: 'Sketching a board-game prototype with paper and dice' },
+  { text: 'Trying to hold a steady weekly running habit' },
 ];
 
 const Now: React.FC = () => {
